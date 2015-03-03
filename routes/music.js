@@ -12,7 +12,7 @@ router.get('/list', function(req, res, next) {
   .header("Accept", "application/json")
   .end(function (result) {
     console.log(result.status);
-    res.render('musiclist', { title: 'Express', data: result.body });
+    res.render('musiclist', { title: 'Music - New Releases', data: result.body });
   });
 
 });
@@ -23,7 +23,7 @@ router.get('/comingsoon', function(req, res, next) {
   .header("Accept", "application/json")
   .end(function (result) {
     console.log(result.body);
-    res.render('musiccoming', { title: 'Express' , data:result.body});
+    res.render('musiccoming', { title: 'Music - Coming Soon' , data:result.body});
   });
   
 });
