@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= "Coming soon"
+	table
+		thead
+			tr
+				th Release Date
+				th Author
+				th Name
+		tbody
+		each item in data.results
+			tr
+				td= item.rlsdate
+				td= item.author
+				td= item.name
