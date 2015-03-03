@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1= "Common"
+        each item in data.body['genres']
+            div.row
+                h5= item
