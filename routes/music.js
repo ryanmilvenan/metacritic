@@ -14,6 +14,18 @@ router.get('/list', function(req, res, next) {
     console.log(result.status);
     res.render('musiclist', { title: 'Express', data: result.body });
   });
+
+});
+
+router.get('/comingsoon', function(req, res, next) {
+  unirest.get("https://byroredux-metacritic.p.mashape.com/album-list/coming-soon")
+  .header("X-Mashape-Key", "1t37z6ZtlvmshEIKo41r9f2yjIh1p14TpsnjsnnL0F5emFdSPa")
+  .header("Accept", "application/json")
+  .end(function (result) {
+    console.log(result.body);
+    res.render('musiccoming', { title: 'Express' , data:result.body});
+  });
+  
 });
 
 module.exports = router;
