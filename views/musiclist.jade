@@ -1,0 +1,7 @@
+extends layout
+
+block content
+	h1= "Music"
+	each item in data.results
+		h2= item.name
+		h2= item.author

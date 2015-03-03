@@ -3,16 +3,17 @@ var router = express.Router();
 var unirest = require('unirest');
 var keys = require('../public/javascripts/keys')
 
-router.get('/', function(req, res, next) {
-  unirest.post("https://byroredux-metacritic.p.mashape.com/find/movie")
+// These code snippets use an open-source library.
+
+router.get('/list', function(req, res, next) {
+  unirest.get("https://byroredux-metacritic.p.mashape.com/album-list/new-releases/date")
   .header("X-Mashape-Key", "1t37z6ZtlvmshEIKo41r9f2yjIh1p14TpsnjsnnL0F5emFdSPa")
   .header("Content-Type", "application/x-www-form-urlencoded")
   .header("Accept", "application/json")
-  .send({"platform":1, "retry":4, "title":"Ghostbusters"})
   .end(function (result) {
-    console.log(result.status, result.headers, result.body);
+    console.log(result.status);
+    res.render('musiclist', { title: 'Express', data: result.body });
   });
-  res.render('music', { title: 'Express' });
 });
 
 module.exports = router;
