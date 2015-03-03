@@ -3,7 +3,7 @@ var router = express.Router();
 var unirest = require('unirest');
 var keys = require('../public/javascripts/keys')
 
-router.get('/', function(req, res, next) {
+router.get('/list', function(req, res, next) {
   unirest.post("https://byroredux-metacritic.p.mashape.com/find/movie")
   .header("X-Mashape-Key", "1t37z6ZtlvmshEIKo41r9f2yjIh1p14TpsnjsnnL0F5emFdSPa")
   .header("Content-Type", "application/x-www-form-urlencoded")
@@ -12,7 +12,18 @@ router.get('/', function(req, res, next) {
   .end(function (result) {
     console.log(result.status, result.headers, result.body);
   });
-  res.render('music', { title: 'Express' });
+  res.render('musiclist', { title: 'Express' });
+});
+
+router.get('/comingsoon', function(req, res, next) {
+  unirest.get("https://byroredux-metacritic.p.mashape.com/album-list/coming-soon")
+  .header("X-Mashape-Key", "1t37z6ZtlvmshEIKo41r9f2yjIh1p14TpsnjsnnL0F5emFdSPa")
+  .header("Accept", "application/json")
+  .end(function (result) {
+    console.log(result.body);
+    res.render('musiccoming', { title: 'Express' , data:result.body});
+  });
+  
 });
 
 module.exports = router;
